@@ -1,0 +1,5 @@
+=head1 Module-Starter
+
+Work-in-progress Perl 6 app for minting new Perl 6 distributions.
+
+=cut
