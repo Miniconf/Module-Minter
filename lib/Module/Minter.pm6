@@ -5,9 +5,8 @@ module Module::Minter
 {
     our grammar Legal-Module-Name
     {
-        token TOP { <identifier> <sub_package> ** 0..* }
-        token sub_package { <separator><identifier> }
-        token identifier { <[A..Za..z_]><[A..Za..z0..9]> ** 0..* } # leading alpha or _ only
+        token TOP { ^ <identifier> [<separator><identifier>] ** 0..* $ }
+        token identifier { <[A..Za..z_]> <[A..Za..z0..9]> ** 0..* } # leading alpha or _ only
         token separator { \:\: } # colon pairs only
     }
 
