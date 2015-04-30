@@ -35,3 +35,7 @@ ok Module::Minter::Legal-Module-Name.parse('V::S'), 'V::S';
 ok Module::Minter::Legal-Module-Name.parse('v::Lowercase::Beginning'), 'v::Lowercase::Beginning';
 ok Module::Minter::Legal-Module-Name.parse('Perl6::Alpha::Numer1c'), 'Perl6::Alpha::Numer1c';
 
+my $matches = Module::Minter::Legal-Module-Name.parse('Perl6::Alpha::Numer1c');
+say $matches<identifier>[0].Str;
+
+

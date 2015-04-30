@@ -40,7 +40,7 @@ module Module::Minter
         my $lib_path = $root_dir_path ~ '/lib/' ~ @module_name_parts.join('/');
         mktree($lib_path);
         say $lib_path;
-        make-main-module($lib_path, $module_name);
+        my $main_module_path = make-main-module($lib_path, $module_name);
 
         # create t
         my $test_path = $root_dir_path ~ '/t';
@@ -52,7 +52,7 @@ module Module::Minter
         my $license_path = make-license($root_dir_path, $author, $license_name);
         say $license_path;
 
-        my $meta_path = make-meta($root_dir_path, $module_name, $author);
+        my $meta_path = make-meta($root_dir_path, $module_name, $main_module_path, $author);
         say $meta_path;
 
         return $root_dir_path;
@@ -61,7 +61,7 @@ module Module::Minter
     sub make-main-module (Str:D $parent_dir, Str:D $module_name)
     {
         my $module_filename = $module_name.split(/\:\:/)[*-1];
-        my $full_path = $parent_dir ~ '/' ~ $module_filename ~ '.pm6';
+        my $full_path = $parent_dir ~ '/' ~ $module_filename ~ '.pm';
         my $fh = $full_path.IO.open(:w);
 
         my $file_contents = qq:to/END/;
@@ -78,7 +78,7 @@ module Module::Minter
     sub make-main-test (Str:D $parent_dir, Str:D $module_name)
     {
         my $module_filename = $module_name.split(/\:\:/)[*-1];
-        my $full_path = $parent_dir ~ '/' ~ $module_filename ~ '.t6';
+        my $full_path = $parent_dir ~ '/' ~ $module_filename ~ '.t';
         my $fh = $full_path.IO.open(:w);
 
         my $file_contents = qq:to/END/;
@@ -94,7 +94,7 @@ module Module::Minter
         return $full_path;
     }
 
-    sub make-meta (Str:D $parent_dir, Str:D $module_name, Str:D $author)
+    sub make-meta (Str:D $parent_dir, Str:D $module_name, Str:D $main_module_path, Str:D $author)
     {
         my $full_path = $parent_dir ~ '/META.info';
         my $fh = $full_path.IO.open(:w);
@@ -105,8 +105,11 @@ module Module::Minter
             "version" : "0.01",
             "description" : "The great new $module_name",
             "author" : "$author",
+            "source-url" : "",
             "depends" : [ ],
-            "source-url" : ""
+            "provides" : \{
+              "$module_name" : "$main_module_path",
+            \},
         \}
         END
         $fh.say($file_contents);
