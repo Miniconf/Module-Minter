@@ -10,8 +10,8 @@ my $tmp_dir = tempdir;
 ok my $root_filepath = mint-new-module("$tmp_dir/Super::Module::Mighty", 'David Farrell', 'FreeBSD'), "Mint new module: Super::Module::Mighty";
 ok $root_filepath.IO ~~ :e, 'Root module directory exists';
 ok $root_filepath.IO ~~ :d, 'Root module directory is a dir';
-ok "$root_filepath/lib/Super/Module/Mighty.pm6".IO ~~ :e, 'Main .pm6 file was created';
-ok "$root_filepath/t/Mighty.t6".IO ~~ :e, 'test file was created';
+ok "$root_filepath/lib/Super/Module/Mighty.pm".IO ~~ :e, 'Main .pm file was created';
+ok "$root_filepath/t/Mighty.t".IO ~~ :e, 'test file was created';
 ok "$root_filepath/LICENSE".IO ~~ :e, 'LICENSE file was created';
 ok "$root_filepath/META.info".IO ~~ :e, 'META file was created';
 
