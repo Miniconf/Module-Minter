@@ -5,6 +5,6 @@
     "author" : "David Farrell",
     "depends" : [ "File::Temp", "Software::License", "File::Directory::Tree" ],
     "provides": { "Module::Minter" : "lib/Module/Minter.pm" },
-    "source-url" : "git://github.com/sillymoose/Module-Minter.git"
+    "source-url" : "git://github.com/dnmfarrell/Module-Minter.git"
 }
 
