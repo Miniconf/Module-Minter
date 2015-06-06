@@ -108,7 +108,7 @@ module Module::Minter
             "source-url" : "",
             "depends" : [ ],
             "provides" : \{
-              "$module_name" : "$main_module_path",
+              "$module_name" : "$main_module_path"
             \},
         \}
         END

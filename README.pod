@@ -8,7 +8,9 @@ Create a new module in the current directory:
 
     $ module-minter --module="My::New::Module" --author="David Farrell"
 
-Or use a different directory and the FreeBSD license:
+Module-Minter defaults to the Artistic 2.0 license.
+
+To use a different directory and the FreeBSD license:
 
     $ module-minter --module="perl6/modules/My::New::Module" --author="David Farrell" --license="FreeBSD"
 
